@@ -109,7 +109,8 @@
   template(PrintMetadata)                         \
   template(GTestExecuteAtSafepoint)               \
   template(JFROldObject)                          \
-  template(JvmtiPostObjectFree)
+  template(JvmtiPostObjectFree)                   \
+  THIRD_PARTY_HEAP_ONLY(template(ThirdPartyHeapOperation)) \
 
 class Thread;
 class outputStream;

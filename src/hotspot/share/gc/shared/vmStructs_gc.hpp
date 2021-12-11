@@ -55,6 +55,10 @@
 #include "gc/z/vmStructs_z.hpp"
 #endif
 
+#ifdef INCLUDE_THIRD_PARTY_HEAP
+#include "gc/shared/thirdPartyHeapVMStructs.hpp"
+#endif
+
 #define VM_STRUCTS_GC(nonstatic_field,                                                                                               \
                       volatile_nonstatic_field,                                                                                      \
                       static_field,                                                                                                  \
@@ -63,6 +67,9 @@
                                       volatile_nonstatic_field,                                                                      \
                                       static_field))                                                                                 \
   G1GC_ONLY(VM_STRUCTS_G1GC(nonstatic_field,                                                                                         \
+                            volatile_nonstatic_field,                                                                                \
+                            static_field))                                                                                           \
+  THIRD_PARTY_HEAP_ONLY(VM_STRUCTS_THIRD_PARTY_HEAP(nonstatic_field,                                                                 \
                             volatile_nonstatic_field,                                                                                \
                             static_field))                                                                                           \
   PARALLELGC_ONLY(VM_STRUCTS_PARALLELGC(nonstatic_field,                                                                             \
@@ -165,6 +172,9 @@
   G1GC_ONLY(VM_TYPES_G1GC(declare_type,                                   \
                           declare_toplevel_type,                          \
                           declare_integer_type))                          \
+  THIRD_PARTY_HEAP_ONLY(VM_TYPES_THIRD_PARTY_HEAP(declare_type,           \
+                          declare_toplevel_type,                          \
+                          declare_integer_type))                          \
   PARALLELGC_ONLY(VM_TYPES_PARALLELGC(declare_type,                       \
                                       declare_toplevel_type,              \
                                       declare_integer_type))              \
@@ -243,6 +253,8 @@
                                             declare_constant_with_value))   \
   G1GC_ONLY(VM_INT_CONSTANTS_G1GC(declare_constant,                         \
                                   declare_constant_with_value))             \
+  THIRD_PARTY_HEAP_ONLY(VM_INT_CONSTANTS_THIRD_PARTY_HEAP(declare_constant, \
+                                  declare_constant_with_value))             \
   PARALLELGC_ONLY(VM_INT_CONSTANTS_PARALLELGC(declare_constant,             \
                                               declare_constant_with_value)) \
   SERIALGC_ONLY(VM_INT_CONSTANTS_SERIALGC(declare_constant,                 \
@@ -281,6 +293,7 @@
   declare_constant(CollectedHeap::Serial)                                   \
   declare_constant(CollectedHeap::Parallel)                                 \
   declare_constant(CollectedHeap::G1)                                       \
+  declare_constant(CollectedHeap::ThirdPartyHeap)                           \
                                                                             \
   /* constants from Generation::Name enum */                                \
                                                                             \

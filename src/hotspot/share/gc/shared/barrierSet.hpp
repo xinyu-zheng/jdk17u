@@ -320,6 +320,7 @@ public:
 template<typename T>
 inline T* barrier_set_cast(BarrierSet* bs) {
   assert(bs->is_a(BarrierSet::GetName<T>::value), "wrong type of barrier set");
+  //assert(UseThirdPartyHeap || bs->is_a(BarrierSet::GetName<T>::value), "wrong type of barrier set");
   return static_cast<T*>(bs);
 }
 

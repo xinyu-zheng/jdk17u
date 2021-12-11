@@ -67,6 +67,7 @@ class Mutex : public CHeapObj<mtSynchronizer> {
        access         = event          +   1,
        tty            = access         +   2,
        special        = tty            +   3,
+       suspend_resume = special        +   1,
        oopstorage     = special        +   3,
        leaf           = oopstorage     +   2,
        safepoint      = leaf           +  10,

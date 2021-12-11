@@ -54,6 +54,10 @@
 #include "jfr/support/jfrThreadExtension.hpp"
 #endif
 
+#ifdef INCLUDE_THIRD_PARTY_HEAP
+#include "gc/shared/thirdPartyHeap.hpp"
+#endif
+
 
 class SafeThreadsListPtr;
 class ThreadSafepointState;
@@ -566,6 +570,13 @@ protected:
   void    record_stack_base_and_size();
   void    register_thread_stack_with_NMT() NOT_NMT_RETURN;
   void    unregister_thread_stack_with_NMT() NOT_NMT_RETURN;
+
+#ifdef INCLUDE_THIRD_PARTY_HEAP
+  third_party_heap::MutatorContext third_party_heap_mutator;
+  void* third_party_heap_collector = NULL;
+  static ByteSize third_party_heap_mutator_offset() { return byte_offset_of(Thread, third_party_heap_mutator); }
+#endif
+
 
   int     lgrp_id() const        { return _lgrp_id; }
   void    set_lgrp_id(int value) { _lgrp_id = value; }

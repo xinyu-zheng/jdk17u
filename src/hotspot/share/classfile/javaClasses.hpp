@@ -370,6 +370,7 @@ class java_lang_Class : AllStatic {
 
   static int oop_size(oop java_class);
   static int oop_size_raw(oop java_class);
+  static int static_oop_field_count_offset();
   static void set_oop_size(HeapWord* java_class, int size);
   static int static_oop_field_count(oop java_class);
   static int static_oop_field_count_raw(oop java_class);
