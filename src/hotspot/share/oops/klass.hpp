@@ -184,6 +184,8 @@ private:
 
   CDS_JAVA_HEAP_ONLY(int _archived_mirror_index;)
 
+  int _padding;
+
 protected:
 
   // Constructor
